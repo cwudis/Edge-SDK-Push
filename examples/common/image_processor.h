@@ -37,7 +37,6 @@ class ImageProcessor {
     struct Options {
         std::string name;
         std::string alias;
-        std::shared_ptr<void> userdata;
     };
 
     virtual int32_t Init() { return 0; }

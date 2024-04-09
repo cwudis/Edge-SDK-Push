@@ -23,6 +23,7 @@
 
 #include "image_processor_display.h"
 #include "image_processor_yolovfastest.h"
+#include "image_processor_car.h"
 #include "logger.h"
 
 namespace edge_app {
@@ -46,10 +47,13 @@ ImageProcessor::~ImageProcessor() {}
 std::shared_ptr<ImageProcessor> CreateImageProcessor(
     const ImageProcessor::Options& option) {
     if (option.name == std::string("display")) {
-        return std::make_shared<ImageDisplayProcessor>(option.alias, option.userdata);
+        return std::make_shared<ImageDisplayProcessor>(option.alias);
     }
     if (option.name == std::string("yolovfastest")) {
         return std::make_shared<ImageProcessorYolovFastest>(option.alias);
+    }
+    if (option.name == std::string("car")) {
+        return std::make_shared<ImageProcessorCar>(option.alias);
     }
     return std::make_shared<UndefinedImageProcessor>(option.alias);
 }
